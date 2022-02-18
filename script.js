@@ -37,18 +37,17 @@ function addTodo(event) {
         var todoList = document.getElementById("leftDiv");
         var todoItem = document.createElement("div");
         var taskHeading = document.createElement("p");
-        var readButton = document.createElement("button");
-        var deleteButton = document.createElement("button");
+        var checkbox = document.createElement("input");
+
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute("id", "checkbox");
+        checkbox.setAttribute("onclick", "checkboxClicked(this)");
 
         todoItem.setAttribute("class", "todoItem");
         taskHeading.innerHTML = todoText.value;
 
-        readButton.innerHTML = "Read";
-        deleteButton.innerHTML = "Delete";
-
         todoItem.appendChild(taskHeading);
-        todoItem.appendChild(readButton);
-        todoItem.appendChild(deleteButton);
+        todoItem.appendChild(checkbox);
 
         todos.push(todoText.value);
 
@@ -72,21 +71,29 @@ todos.forEach(function(value){
     var todoList = document.getElementById("leftDiv");
     var todoItem = document.createElement("div");
     var taskHeading = document.createElement("p");
-    var readButton = document.createElement("button");
-    var deleteButton = document.createElement("button");
+    var checkbox = document.createElement("input");
+
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("id", "checkbox");
+    checkbox.setAttribute("onclick", "checkboxClicked(this)");
 
 
     todoItem.setAttribute("class", "todoItem");
     taskHeading.innerHTML = value;
 
-    readButton.innerHTML = "Read";
-    deleteButton.innerHTML = "Delete";
-
     todoItem.appendChild(taskHeading);
-    todoItem.appendChild(readButton);
-    todoItem.appendChild(deleteButton);
+    todoItem.appendChild(checkbox);
 
     todoList.appendChild(todoItem);
     todoText.value = "";
 
 })
+
+function checkboxClicked(checkbox) {
+    // Check or uncheck a to-do item
+    if (checkbox.checked) {
+        checkbox.parentElement.style.textDecoration = "line-through";
+    } else {
+        checkbox.parentElement.style.textDecoration = "none";
+    }
+}
