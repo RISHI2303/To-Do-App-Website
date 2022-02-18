@@ -38,16 +38,22 @@ function addTodo(event) {
         var todoItem = document.createElement("div");
         var taskHeading = document.createElement("p");
         var checkbox = document.createElement("input");
+        var deleteButton = document.createElement("button");
 
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("id", "checkbox");
         checkbox.setAttribute("onclick", "checkboxClicked(this)");
+
+        deleteButton.setAttribute("id", "deleteButton");
+        // deleteButton.setAttribute("onclick", "deleteTodo(this)");
+        deleteButton.setAttribute("src", "close.png");
 
         todoItem.setAttribute("class", "todoItem");
         taskHeading.innerHTML = todoText.value;
 
         todoItem.appendChild(taskHeading);
         todoItem.appendChild(checkbox);
+        todoItem.appendChild(deleteButton);
 
         todos.push(todoText.value);
 
@@ -72,17 +78,22 @@ todos.forEach(function(value){
     var todoItem = document.createElement("div");
     var taskHeading = document.createElement("p");
     var checkbox = document.createElement("input");
+    var deleteButton = document.createElement("button");
 
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", "checkbox");
     checkbox.setAttribute("onclick", "checkboxClicked(this)");
 
+    deleteButton.setAttribute("id", "deleteButton");
+    // deleteButton.setAttribute("onclick", "deleteTodo(this)");
+    deleteButton.setAttribute("src", "close.png");
 
     todoItem.setAttribute("class", "todoItem");
     taskHeading.innerHTML = value;
 
     todoItem.appendChild(taskHeading);
     todoItem.appendChild(checkbox);
+    todoItem.appendChild(deleteButton);
 
     todoList.appendChild(todoItem);
     todoText.value = "";
