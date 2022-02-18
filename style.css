@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  height: 100%;
+  /* margin: 0px;
+    padding: 0px; */
+}
+
+#leftDiv {
+  flex: 1;
+  height: 100%;
+}
+
+#rightDiv {
+  flex: 1;
+  height: 100%;
+}
+
+#todoText {
+  height: 50%;
+  width: 100%;
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
