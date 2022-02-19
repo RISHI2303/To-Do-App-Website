@@ -39,10 +39,15 @@ function addTodo(event) {
         var taskHeading = document.createElement("p");
         var checkbox = document.createElement("input");
         var deleteButton = document.createElement("i");
+        var editButton = document.createElement("i");
 
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("id", "checkbox");
         checkbox.setAttribute("onclick", "checkboxClicked(this)");
+
+        editButton.setAttribute("id", "editButton");
+        editButton.setAttribute("onclick", "editTodo(this)");
+        editButton.setAttribute("class", "fa-solid fa-pencil");
 
         deleteButton.setAttribute("id", "deleteButton");
         deleteButton.setAttribute("onclick", "deleteTodo(this)");
@@ -79,6 +84,7 @@ todos.forEach(function(value){
     var taskHeading = document.createElement("p");
     var checkbox = document.createElement("input");
     var deleteButton = document.createElement("i");
+    var editButton = document.createElement("i");
 
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", "checkbox");
@@ -88,11 +94,16 @@ todos.forEach(function(value){
     deleteButton.setAttribute("onclick", "deleteTodo(this)");
     deleteButton.setAttribute("class", "fa-solid fa-xmark");
 
+    editButton.setAttribute("id", "editButton");
+    editButton.setAttribute("onclick", "editTodo(this)");
+    editButton.setAttribute("class", "fa-solid fa-pencil");
+
     todoItem.setAttribute("class", "todoItem");
     taskHeading.innerHTML = value;
 
     todoItem.appendChild(taskHeading);
     todoItem.appendChild(checkbox);
+    todoItem.appendChild(editButton);
     todoItem.appendChild(deleteButton);
 
     todoList.appendChild(todoItem);
@@ -111,5 +122,25 @@ function checkboxClicked(checkbox) {
 
 function deleteTodo(deleteButton, stringValue) {
     // Delete a to-do item
+    var text = deleteButton.parentElement.firstChild.innerHTML;
+    var index = todos.indexOf(text);
+    todos.splice(index, 1);
+
+    localStorage.clear;
+    localStorage.setItem("todos", JSON.stringify(todos));
     deleteButton.parentElement.remove();
+}
+
+function editTodo(editButton) {
+    // Edit a to-do item
+    var todoText = document.getElementById("todoText");
+    var taskHeading = editButton.parentElement.firstChild;
+
+    todoText.setAttribute("placeholder", "Enter updated task here");
+    taskHeading.innerHTML = todoText.value;
+    var index = todos.indexOf(taskHeading.innerHTML);
+    todos[index] = todoText.value;
+    localStorage.clear;
+
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
