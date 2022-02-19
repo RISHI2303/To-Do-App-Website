@@ -58,6 +58,7 @@ function addTodo(event) {
 
         todoItem.appendChild(taskHeading);
         todoItem.appendChild(checkbox);
+        todoItem.appendChild(editButton);
         todoItem.appendChild(deleteButton);
 
         todos.push(todoText.value);
@@ -114,9 +115,9 @@ todos.forEach(function(value){
 function checkboxClicked(checkbox) {
     // Check or uncheck a to-do item
     if (checkbox.checked) {
-        checkbox.parentElement.style.textDecoration = "line-through";
+        checkbox.parentElement.firstChild.style.textDecoration = "line-through";
     } else {
-        checkbox.parentElement.style.textDecoration = "none";
+        checkbox.parentElement.firstChild.style.textDecoration = "none";
     }
 }
 
@@ -133,14 +134,16 @@ function deleteTodo(deleteButton, stringValue) {
 
 function editTodo(editButton) {
     // Edit a to-do item
-    var todoText = document.getElementById("todoText");
-    var taskHeading = editButton.parentElement.firstChild;
+    var task = prompt("Edit your task");
 
-    todoText.setAttribute("placeholder", "Enter updated task here");
-    taskHeading.innerHTML = todoText.value;
-    var index = todos.indexOf(taskHeading.innerHTML);
-    todos[index] = todoText.value;
-    localStorage.clear;
+    if (task !== null) {
+        var taskHeading = editButton.parentElement.firstChild;
+        todos[todos.indexOf(taskHeading.innerHTML)] = task;
 
-    localStorage.setItem("todos", JSON.stringify(todos));
+        taskHeading.innerHTML = task;
+
+        localStorage.clear;
+
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }
 }
