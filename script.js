@@ -109,13 +109,7 @@ function checkboxClicked(checkbox) {
     }
 }
 
-function deleteTodo(deleteButton) {
+function deleteTodo(deleteButton, stringValue) {
     // Delete a to-do item
-    var item = deleteButton.parentElement;
-
-    console.log(temp);
-
-
-    // item.remove();
-
+    deleteButton.parentElement.remove();
 }
