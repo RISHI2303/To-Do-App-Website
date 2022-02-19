@@ -38,15 +38,15 @@ function addTodo(event) {
         var todoItem = document.createElement("div");
         var taskHeading = document.createElement("p");
         var checkbox = document.createElement("input");
-        var deleteButton = document.createElement("button");
+        var deleteButton = document.createElement("i");
 
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("id", "checkbox");
         checkbox.setAttribute("onclick", "checkboxClicked(this)");
 
         deleteButton.setAttribute("id", "deleteButton");
-        // deleteButton.setAttribute("onclick", "deleteTodo(this)");
-        deleteButton.setAttribute("src", "close.png");
+        deleteButton.setAttribute("onclick", "deleteTodo(this)");
+        deleteButton.setAttribute("class", "fa-solid fa-xmark");
 
         todoItem.setAttribute("class", "todoItem");
         taskHeading.innerHTML = todoText.value;
@@ -78,15 +78,15 @@ todos.forEach(function(value){
     var todoItem = document.createElement("div");
     var taskHeading = document.createElement("p");
     var checkbox = document.createElement("input");
-    var deleteButton = document.createElement("button");
+    var deleteButton = document.createElement("i");
 
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", "checkbox");
     checkbox.setAttribute("onclick", "checkboxClicked(this)");
 
     deleteButton.setAttribute("id", "deleteButton");
-    // deleteButton.setAttribute("onclick", "deleteTodo(this)");
-    deleteButton.setAttribute("src", "close.png");
+    deleteButton.setAttribute("onclick", "deleteTodo(this)");
+    deleteButton.setAttribute("class", "fa-solid fa-xmark");
 
     todoItem.setAttribute("class", "todoItem");
     taskHeading.innerHTML = value;
@@ -107,4 +107,15 @@ function checkboxClicked(checkbox) {
     } else {
         checkbox.parentElement.style.textDecoration = "none";
     }
+}
+
+function deleteTodo(deleteButton) {
+    // Delete a to-do item
+    var item = deleteButton.parentElement;
+
+    console.log(temp);
+
+
+    // item.remove();
+
 }
